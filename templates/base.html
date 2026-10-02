@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}航空时代官网{% endblock %}</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system, "Microsoft YaHei", sans-serif; color: #222; line-height: 1.6; }
+        .site-header { background: #1a1a2e; color: #fff; padding: 1rem 2rem; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; }
+        .logo { color: #fff; font-weight: bold; font-size: 1.25rem; text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+        .nav-links a { color: #ddd; text-decoration: none; }
+        .nav-links a:hover { color: #fff; }
+        .site-main { max-width: 1100px; margin: 2rem auto; padding: 0 2rem; }
+        .site-footer { text-align: center; padding: 2rem; color: #888; font-size: 0.9rem; border-top: 1px solid #eee; margin-top: 3rem; }
+        .site-footer a { color: #888; }
+        .messages { max-width: 1100px; margin: 1rem auto; padding: 0 2rem; }
+        .message { padding: 0.75rem 1rem; border-radius: 4px; background: #e8f5e9; }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header class="site-header">
+        <nav class="nav-container">
+            <a class="logo" href="{% url 'core:index' %}">航空时代</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'core:index' %}">首页</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 消息提示 -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- 页面主体 -->
+    <main class="site-main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <p>&copy; {% now "Y" %} 航空时代. All rights reserved.</p>
+        <p>
+            <a href="#">关于我们</a> ·
+            <a href="#">联系方式</a> ·
+            <a href="#">加入我们</a>
+        </p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

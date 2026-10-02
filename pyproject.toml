@@ -1,0 +1,11 @@
+[project]
+name = "minecraftserverofficialsite"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=6.1.1",
+    "mysqlclient>=2.3.0",
+    "python-dotenv>=1.2.3",
+]
